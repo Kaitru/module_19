@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from task1.models import *
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -51,3 +52,10 @@ def register(request):
                 info['success'] = f'Приветствуем, {username}'
 
     return render(request, 'registration_page.html', info)
+
+def news(request):
+    news = News.objects.all().order_by('-date')
+    paginator = Paginator(news, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'news.html', {'news': page_obj})
