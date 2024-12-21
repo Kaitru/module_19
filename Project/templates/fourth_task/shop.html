@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    {% include 'menu.html' %}
+    <ul>
+        {% for product in products %}
+            <li> <p>{{ product.title }} | {{ product.description }}. Цена: {{ product.cost }}</p> <button>Добавить в корзину</button> </li>
+        {% endfor %}
+    </ul>
+    <button><a href="/">Вернуться на главную</a></button>
+</body>
+</html>
